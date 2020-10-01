@@ -10,6 +10,26 @@ $basicForm = New-Object System.Windows.Forms.Form
 $basicForm.Height = 600
 $basicForm.Width = 600
 
+$copyUserButton                     = New-Object System.Windows.Forms.RadioButton
+$copyUserButton.text                = "Yes"
+$copyUserButton.AutoSize            = $true
+$copyUserButton.width               = 150
+$copyUserButton.height              = 50
+$copyUserButton.location            = New-Object System.Drawing.Point(200,5)
+$copyUserButton.Font                = 'Microsoft Sans Serif,10'
+
+$nocopyUserButton                     = New-Object System.Windows.Forms.RadioButton
+$nocopyUserButton.text                = "No"
+$nocopyUserButton.AutoSize            = $true
+$nocopyUserButton.width               = 150
+$nocopyUserButton.height              = 50
+$nocopyUserButton.location            = New-Object System.Drawing.Point(300,5)
+$nocopyUserButton.Font                = 'Microsoft Sans Serif,10'
+
+$copyUserTxtBox               = New-Object System.Windows.Forms.TextBox
+$copyUserTxtBox.Location      = '200,25'
+$copyUserTxtBox.Size          = '150,25'
+
 $givenName                     = New-Object system.Windows.Forms.Label
 $givenName.text                = "First Name"
 $givenName.AutoSize            = $true
@@ -81,10 +101,10 @@ $submitButton.Anchor          = [System.Windows.Forms.AnchorStyles]::Bottom -bor
 <# confirmation warning panel #>
 $buttonType                   = [System.Windows.MessageBoxButton]::YesNo
 $messageIcon                  = [System.Windows.MessageBoxImage]::Warning
-$messageBody                  = "Create new AD User?"
+$messageBody                  = "Confirm Submission?"
 $messageTitle                 = "Confirm Submission"
 
-$basicForm.controls.AddRange(@($givenName, $givenNameTxtBox, $surName, $surNameTxtBox, $Username, $usernameTxtBox, $Password, $passwordTxtBox, $Email, $emailTxtBox, $submitButton))
+$basicForm.controls.AddRange(@($copyUserButton, $nocopyUserButton, $copyUserTxtBox, $givenName, $givenNameTxtBox, $surName, $surNameTxtBox, $Username, $usernameTxtBox, $Password, $passwordTxtBox, $Email, $emailTxtBox, $submitButton))
 
 #---------------------------------------------------------[Functions]---------------------------------------------------------
 
@@ -95,23 +115,43 @@ function newUser {
         givenname         = $givenNameTxtBox.Text
         surname           = $surNameTxtBox.Text
         Samaccountname    = $usernameTxtBox.Text
-        userprincipalname = $user.emailaddress
+        userprincipalname = $emailTxtBox.Text
         department        = $user.department 
         Title             = $user.jobtitle 
-        displayname       = $user.displayname 
+        displayname       = $givenNameTxtBox.Text + " " + $surNameTxtBox.Text
         emailaddress      = $emailTxtBox.Text
-        path              = $copiedOU
+        path              = $global:copiedOU
         Enabled           = $true
         verbose           = $true
     }
-    Write-Host @splat -ErrorAction Stop
-}
+        Write-Host @splat
+        #New-ADUser @splat -ErrorAction Stop
+            #foreach ($membership in $copiedMemberships) {
+                #try {
+                    #Add-ADGroupMember -Identity $membership -Members $usernameTxtBox.Text
+                #}
+                #catch [System.Management.Automation.CmdletInvocationException] {
+                    <# Catch "Already apart of "domain users" error" #>
+                #}
+            #} <# End of foreach block #>
+}<# End of new user function #>
 
+function copyUser {
+        $copiedUser = $copyUserTxtBox.Text
+        $global:copiedOU = (((Get-ADUser -identity $copiedUser -Properties CanonicalName | select-object -expandproperty DistinguishedName) -split",") | Select-Object -Skip 1) -join ','
+        $copiedMemberships = Get-ADPrincipalGroupMembership $copiedUser | Select-Object -ExpandProperty Name
+        
+} <# End of copyUser function #>
 #---------------------------------------------------------[Scripts]---------------------------------------------------------
 
 $submitButton.Add_Click({
     $confirmationWindow = [System.Windows.MessageBox]::Show($MessageBody,$MessageTitle,$ButtonType,$MessageIcon)
-    if ($confirmationWindow -eq "Yes") {
+    if ($confirmationWindow -eq "Yes" -and $copyUserButton.Checked) {
+        copyUser
+        $securePW = $passwordTxtBox.Text | ConvertTo-SecureString -AsPlainText -Force
+        newUser
+    } 
+    elseif ($confirmationWindow -eq "Yes") {
         $securePW = $passwordTxtBox.Text | ConvertTo-SecureString -AsPlainText -Force
         newUser
     }
