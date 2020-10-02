@@ -1,6 +1,6 @@
 
 #---------------------------------------------------------[Pre Reqs]---------------------------------------------------------
-[void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing") 
+[void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
 [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
 [void] [System.Windows.Forms.Application]::EnableVisualStyles()
 Add-Type -AssemblyName PresentationCore,PresentationFramework
@@ -9,34 +9,33 @@ Add-Type -AssemblyName PresentationCore,PresentationFramework
 $basicForm = New-Object System.Windows.Forms.Form
 $basicForm.Height = 600
 $basicForm.Width = 300
-$basicFormImage = [system.drawing.image]::FromFile("C:\Users\Master\desktop\AldridgeLogo_noSlogan.png")
 
-$givenName                     = New-Object system.Windows.Forms.Label
-$givenName.text                = "First Name"
-$givenName.AutoSize            = $true
-$givenName.width               = 150
-$givenName.height              = 50
-$givenName.location            = New-Object System.Drawing.Point(23,5)
-$givenName.Font                = 'Microsoft Sans Serif,10'
+$givenName                    = New-Object system.Windows.Forms.Label
+$givenName.text               = "First Name *"
+$givenName.AutoSize           = $true
+$givenName.width              = 150
+$givenName.height             = 50
+$givenName.location           = New-Object System.Drawing.Point(23,5)
+$givenName.Font               = 'Microsoft Sans Serif,10'
 
-$givenNameTxtBox               = New-Object System.Windows.Forms.TextBox
-$givenNameTxtBox.Location      = '23,25'
-$givenNameTxtBox.Size          = '150,25'
+$givenNameTxtBox              = New-Object System.Windows.Forms.TextBox
+$givenNameTxtBox.Location     = '23,25'
+$givenNameTxtBox.Size         = '150,25'
 
-$surName                     = New-Object system.Windows.Forms.Label
-$surName.text                = "Last Name"
-$surName.AutoSize            = $true
-$surName.width               = 150
-$surName.height              = 50
-$surName.location            = New-Object System.Drawing.Point(23,60)
-$surName.Font                = 'Microsoft Sans Serif,10'
+$surName                      = New-Object system.Windows.Forms.Label
+$surName.text                 = "Last Name *"
+$surName.AutoSize             = $true
+$surName.width                = 150
+$surName.height               = 50
+$surName.location             = New-Object System.Drawing.Point(23,60)
+$surName.Font                 = 'Microsoft Sans Serif,10'
 
-$surNameTxtBox               = New-Object System.Windows.Forms.TextBox
-$surNameTxtBox.Location      = '23,80'
-$surNameTxtBox.Size          = '150,25'
+$surNameTxtBox                = New-Object System.Windows.Forms.TextBox
+$surNameTxtBox.Location       = '23,80'
+$surNameTxtBox.Size           = '150,25'
 
 $Username                     = New-Object system.Windows.Forms.Label
-$Username.text                = "Username"
+$Username.text                = "Username *"
 $Username.AutoSize            = $true
 $Username.width               = 150
 $Username.height              = 50
@@ -48,7 +47,7 @@ $usernameTxtBox.Location      = '23,135'
 $usernameTxtBox.Size          = '150,23'
 
 $Password                     = New-Object System.Windows.Forms.Label
-$Password.text                = "Password"
+$Password.text                = "Password *"
 $Password.AutoSize            = $true
 $Password.width               = 150
 $Password.height              = 50
@@ -60,17 +59,17 @@ $passwordTxtBox.PasswordChar  = "*"
 $passwordTxtBox.Location      = '23,190'
 $passwordTxtBox.Size          = '150,23'
 
-$Email                     = New-Object system.Windows.Forms.Label
-$Email.text                = "Email"
-$Email.AutoSize            = $true
-$Email.width               = 150
-$Email.height              = 50
-$Email.location            = New-Object System.Drawing.Point(23,225)
-$Email.Font                = 'Microsoft Sans Serif,10'
+$Email                        = New-Object system.Windows.Forms.Label
+$Email.text                   = "Email *"
+$Email.AutoSize               = $true
+$Email.width                  = 150
+$Email.height                 = 50
+$Email.location               = New-Object System.Drawing.Point(23,225)
+$Email.Font                   = 'Microsoft Sans Serif,10'
 
-$emailTxtBox               = New-Object System.Windows.Forms.TextBox
-$emailTxtBox.Location      = '23,245'
-$emailTxtBox.Size          = '150,23'
+$emailTxtBox                  = New-Object System.Windows.Forms.TextBox
+$emailTxtBox.Location         = '23,245'
+$emailTxtBox.Size             = '150,23'
 
 $jobTitle                     = New-Object system.Windows.Forms.Label
 $jobTitle.text                = "Job Title"
@@ -84,49 +83,49 @@ $jobTitleTxtBox               = New-Object System.Windows.Forms.TextBox
 $jobTitleTxtBox.Location      = '23,300'
 $jobTitleTxtBox.Size          = '150,25'
 
-$department                     = New-Object system.Windows.Forms.Label
-$department.text                = "Department"
-$department.AutoSize            = $true
-$department.width               = 150
-$department.height              = 50
-$department.location            = New-Object System.Drawing.Point(23,330)
-$department.Font                = 'Microsoft Sans Serif,10'
+$department                   = New-Object system.Windows.Forms.Label
+$department.text              = "Department"
+$department.AutoSize          = $true
+$department.width             = 150
+$department.height            = 50
+$department.location          = New-Object System.Drawing.Point(23,330)
+$department.Font              = 'Microsoft Sans Serif,10'
 
-$departmentTxtBox               = New-Object System.Windows.Forms.TextBox
-$departmentTxtBox.Location      = '23,350'
-$departmentTxtBox.Size          = '150,25'
+$departmentTxtBox             = New-Object System.Windows.Forms.TextBox
+$departmentTxtBox.Location    = '23,350'
+$departmentTxtBox.Size        = '150,25'
 
-$copyUser                           = New-Object System.Windows.Forms.Label
-$copyUser.Text                      = "Copy User?"
-$copyUser.AutoSize                  = $true
-$copyUser.Width                     = 150
-$copyUser.Height                    = 50
-$copyUser.Location                  = '23,385'
-$copyUser.Font                      = 'Microsoft Sans Serif,10'
+$copyUser                     = New-Object System.Windows.Forms.Label
+$copyUser.Text                = "Copy User?"
+$copyUser.AutoSize            = $true
+$copyUser.Width               = 150
+$copyUser.Height              = 50
+$copyUser.Location            = '23,385'
+$copyUser.Font                = 'Microsoft Sans Serif,10'
 
-$copyUserButton                     = New-Object System.Windows.Forms.RadioButton
-$copyUserButton.text                = "Yes"
-$copyUserButton.AutoSize            = $true
-$copyUserButton.width               = 150
-$copyUserButton.height              = 50
-$copyUserButton.location            = New-Object System.Drawing.Point(100,383)
-$copyUserButton.Font                = 'Microsoft Sans Serif,10'
+$copyUserButton               = New-Object System.Windows.Forms.RadioButton
+$copyUserButton.text          = "Yes"
+$copyUserButton.AutoSize      = $true
+$copyUserButton.width         = 150
+$copyUserButton.height        = 50
+$copyUserButton.location      = New-Object System.Drawing.Point(100,383)
+$copyUserButton.Font          = 'Microsoft Sans Serif,10'
 
-$nocopyUserButton                     = New-Object System.Windows.Forms.RadioButton
-$nocopyUserButton.text                = "No"
-$nocopyUserButton.AutoSize            = $true
-$nocopyUserButton.width               = 150
-$nocopyUserButton.height              = 50
-$nocopyUserButton.location            = New-Object System.Drawing.Point(150,383)
-$nocopyUserButton.Font                = 'Microsoft Sans Serif,10'
+$nocopyUserButton             = New-Object System.Windows.Forms.RadioButton
+$nocopyUserButton.text        = "No"
+$nocopyUserButton.AutoSize    = $true
+$nocopyUserButton.width       = 150
+$nocopyUserButton.height      = 50
+$nocopyUserButton.location    = New-Object System.Drawing.Point(150,383)
+$nocopyUserButton.Font        = 'Microsoft Sans Serif,10'
 
-$userToCopy                     = New-Object system.Windows.Forms.Label
-$userToCopy.text                = "User to Copy"
-$userToCopy.AutoSize            = $true
-$userToCopy.width               = 150
-$userToCopy.height              = 50
-$userToCopy.location            = New-Object System.Drawing.Point(23,415)
-$userToCopy.Font                = 'Microsoft Sans Serif,10'
+$userToCopy                   = New-Object system.Windows.Forms.Label
+$userToCopy.text              = "Their Username"
+$userToCopy.AutoSize          = $true
+$userToCopy.width             = 150
+$userToCopy.height            = 50
+$userToCopy.location          = New-Object System.Drawing.Point(23,415)
+$userToCopy.Font              = 'Microsoft Sans Serif,10'
 
 $copyUserTxtBox               = New-Object System.Windows.Forms.TextBox
 $copyUserTxtBox.Location      = '23,440'
@@ -147,12 +146,23 @@ $messageBody                  = "Confirm Submission?"
 $messageTitle                 = "Confirm"
 
 <# successful dialog box. #>
-$confirmationBody             = "SUCCESS"
-$confirmationTitle            = "User Creation"
+$successConfBody             = "Successful user creation"
+$successConfTitle            = "User Creation"
 
-$basicForm.controls.AddRange(@($givenName, $givenNameTxtBox, $surName, $surNameTxtBox, $Username, $usernameTxtBox, $Password, $passwordTxtBox, $Email, $emailTxtBox, $copyUser, $copyUserButton, $nocopyUserButton, $userToCopy, $copyUserTxtBox, $jobTitle, $jobTitleTxtBox, $department, $departmentTxtBox, $submitButton))
+<# failed dialog box. #>
+$failedConfBody               = "Failed to create user"
+$failedConfTitle              = "User Creation"
+
+$basicForm.controls.AddRange(@($givenName, $givenNameTxtBox, $surName, $surNameTxtBox, $Username, $usernameTxtBox, $Password, $passwordTxtBox, $Email, $emailTxtBox ,$jobTitle, $jobTitleTxtBox, $department, $departmentTxtBox, $copyUser, $copyUserButton, $nocopyUserButton, $userToCopy, $copyUserTxtBox, $submitButton))
 
 #---------------------------------------------------------[Functions]---------------------------------------------------------
+
+function copyUser {
+        $copiedUser = $copyUserTxtBox.Text
+        $global:copiedOU = (((Get-ADUser -identity $copiedUser -Properties CanonicalName | select-object -expandproperty DistinguishedName) -split",") | Select-Object -Skip 1) -join ','
+        $global:copiedMemberships = Get-ADPrincipalGroupMembership $copiedUser | Select-Object -ExpandProperty Name
+
+}
 
 function newUser {
     $splat = @{
@@ -170,24 +180,16 @@ function newUser {
         Enabled           = $true
         verbose           = $true
     }
-        Write-Host @splat
         New-ADUser @splat -ErrorAction Stop
-            foreach ($membership in $copiedMemberships) {
-                try {
-                    Add-ADGroupMember -Identity $membership -Members $usernameTxtBox.Text
-                }
-                catch [System.Management.Automation.CmdletInvocationException] {
+        foreach ($membership in $global:copiedMemberships) {
+        try {
+            Add-ADGroupMember -Identity $membership -Members $usernameTxtBox.Text
+        }
+        catch [System.Management.Automation.CmdletInvocationException] {
                     <# Catch "Already apart of "domain users" error" #>
-                }
-            } <# End of foreach block #>
-}<# End of new user function #>
-
-function copyUser {
-        $copiedUser = $copyUserTxtBox.Text
-        $global:copiedOU = (((Get-ADUser -identity $copiedUser -Properties CanonicalName | select-object -expandproperty DistinguishedName) -split",") | Select-Object -Skip 1) -join ','
-        $copiedMemberships = Get-ADPrincipalGroupMembership $copiedUser | Select-Object -ExpandProperty Name
-        
-} <# End of copyUser function #>
+            }
+        } <# End of foreach block #>
+}
 #---------------------------------------------------------[Scripts]---------------------------------------------------------
 
 $submitButton.Add_Click({
@@ -197,14 +199,15 @@ $submitButton.Add_Click({
             copyUser
             $securePW = $passwordTxtBox.Text | ConvertTo-SecureString -AsPlainText -Force
             newUser -ErrorAction Stop
-            [System.Windows.MessageBox]::Show($confirmationBody, $confirmationTitle)
+            [System.Windows.MessageBox]::Show($successConfBody, $successConfTitle)
+            $basicForm.Close()
         }
         catch {
-            Write-Output "Failed to create new user"
+            [System.Windows.MessageBox]::Show($failedConfBody, $failedConfTitle)
             Write-Warning $Error[0]
         }
         
-    } 
+    }
     elseif ($confirmationWindow -eq "Yes") {
         try {
             $securePW = $passwordTxtBox.Text | ConvertTo-SecureString -AsPlainText -Force
